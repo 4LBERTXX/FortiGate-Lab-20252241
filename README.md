@@ -88,21 +88,7 @@ El direccionamiento de toda la topología se calculó mediante VLSM a partir de 
 
 ### Topología
 
-```
-[ NAT1 / ISP ] --- port1 (WAN, DHCP)
-                     |
-              [ FortiGate 7.0.9 ]
-                     |
-                  port2 (trunk 802.1Q)
-                     |
-              [ Switch Cisco IOSv ]
-              Gi0/0 trunk  → FortiGate port2
-              Gi0/1 access → VLAN 10 → Usuarios
-              Gi0/2 access → VLAN 20 → WEB-Server
-              Gi0/3 access → VLAN 30 → DB-Server
-```
-
-> 📌 *Agregar aquí la imagen del diagrama gráfico de la topología (`images/01_topologia.png`).*
+(images/01_topologia.png)
 
 ### Tabla de Direccionamiento
 
