@@ -383,24 +383,17 @@ La DoS Policy detecta el patrón de flood y bloquea la fuente, registrándolo en
 ```
 images/
 ├── 01_topologia.png
-├── 02_interfaces_vlan.png
-├── 03_dhcp_vlan10.png
-├── 04_ruta_por_defecto.png
-├── 05_firewall_policy_1_2.png
-├── 06_web_to_db_policy_3.png
-├── 07_security_profiles.png
-├── 08_deep_inspection.png
-├── 09_ips_certificado.png
-├── 10_intrusion_prevention_sql_injection.png
-├── 11_file_filter.png
-├── 12_dos_policy.png
-├── 13_switch_vlans_port_security.png
-├── 14_prueba_acceso_web_permitido.png
-├── 15_prueba_bloqueo_db.png
-├── 16_prueba_sqli_bloqueado_cuarentena.png
-├── 17_prueba_bloqueo_exe.png
-├── 18_prueba_restriccion_web_to_db.png
-└── 19_prueba_rate_limiting_dos.png
+├── 02_interfaces.png
+├── 03_Firewall Policy.png
+├── 04_Politica Web-toD-B.png
+├── 05_deep-inspection.png
+├── 06_ips- certificado.png
+├── 07_instrusion prevention-sql-injection.png
+├── 08_File filter.png
+├── 09_VLANS y port-security del Switch.png
+├── 10_Prueba acceso permitido al WEB.png
+├── 11_Prueba bloqueo al DB-Server.png
+├── 12_ruta por defecto.png
 ```
 
 > ⚠️ Ya tomadas: `01_topologia`, `05_firewall_policy_1_2`, `07_security_profiles`, `08_deep_inspection`, `09_ips_certificado`, `10_intrusion_prevention_sql_injection`, `11_file_filter`, `12_dos_policy`.
