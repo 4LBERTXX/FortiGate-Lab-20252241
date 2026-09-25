@@ -381,4 +381,3 @@ images/
 ├── 11_Prueba bloqueo al DB-Server.png
 ├── 12_ruta por defecto.png
 ```
-> Pendientes por capturar: interfaces VLAN, DHCP, ruta por defecto, política Web-to-DB, configuración del switch, y las capturas de las pruebas de validación (4–19 según corresponda).
