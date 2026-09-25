@@ -88,7 +88,7 @@ El direccionamiento de toda la topología se calculó mediante VLSM a partir de 
 
 ### Topología
 
-(images/01_topologia.png)
+(images/01 — topologia.png)
 
 ### Tabla de Direccionamiento
 
