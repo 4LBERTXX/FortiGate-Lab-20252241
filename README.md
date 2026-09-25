@@ -88,7 +88,7 @@ El direccionamiento de toda la topología se calculó mediante VLSM a partir de 
 
 ### Topología
 
-(images/01 — topologia.png)
+(images/01-topologia.png)
 
 ### Tabla de Direccionamiento
 
@@ -381,6 +381,4 @@ images/
 ├── 11_Prueba bloqueo al DB-Server.png
 ├── 12_ruta por defecto.png
 ```
-
-> ⚠️ Ya tomadas: `01_topologia`, `05_firewall_policy_1_2`, `07_security_profiles`, `08_deep_inspection`, `09_ips_certificado`, `10_intrusion_prevention_sql_injection`, `11_file_filter`, `12_dos_policy`.
 > Pendientes por capturar: interfaces VLAN, DHCP, ruta por defecto, política Web-to-DB, configuración del switch, y las capturas de las pruebas de validación (4–19 según corresponda).
