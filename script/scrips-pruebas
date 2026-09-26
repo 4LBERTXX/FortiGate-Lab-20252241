@@ -1,0 +1,31 @@
+################################################################################
+# Scripts de prueba — Validación de seguridad FortiGate (Matrícula 20252241)
+# Ejecutar desde la máquina Usuario, salvo que se indique otra VM.
+################################################################################
+
+echo "=== Prueba 1: Acceso permitido a WEB-Server (Política 1, HTTPS) ==="
+curl -k https://20.25.224.130/
+
+echo ""
+echo "=== Prueba 2: Bloqueo hacia DB-Server (Política 2) ==="
+nc -zv -w 3 20.25.224.146 3306
+
+echo ""
+echo "=== Prueba 3: SQL Injection — debe bloquear y poner en cuarentena ==="
+curl -k -G "https://20.25.224.130/" --data-urlencode "id=1 UNION SELECT username,password FROM users"
+
+echo ""
+echo "=== Prueba 4: Descarga de .exe — debe bloquear ==="
+curl -k -O https://20.25.224.130/prueba.exe
+
+echo ""
+echo "=== Prueba 5: Rate limiting / DoS — debe bloquear el flood ==="
+# Requiere: sudo apt install -y hping3
+sudo hping3 -S --flood -p 443 20.25.224.130
+
+################################################################################
+# Prueba 6: Restricción WEB-Server → DB-Server (ejecutar DESDE el WEB-Server,
+# no desde Usuario, y con la política temporal de Internet ya desactivada)
+################################################################################
+# curl -k https://8.8.8.8 --max-time 5     # debe fallar
+# nc -zv -w 3 20.25.224.146 3306            # debe responder
