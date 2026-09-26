@@ -1,0 +1,556 @@
+show system interface
+
+FortiGate-VM64-KVM # show system interface
+config system interface
+    edit "port1"
+        set vdom "root"
+        set mode dhcp
+        set allowaccess ping https ssh
+        set type physical
+        set lldp-reception enable
+        set role wan
+        set snmp-index 1
+    next
+    edit "port2"
+        set vdom "root"
+        set type physical
+        set snmp-index 2
+    next
+    edit "port3"
+        set vdom "root"
+        set mode dhcp
+        set allowaccess ping https ssh http
+        set type physical
+        set snmp-index 3
+    next
+    edit "port4"
+        set vdom "root"
+        set type physical
+        set snmp-index 4
+    next
+    edit "port5"
+        set vdom "root"
+        set type physical
+        set snmp-index 5
+    next
+    edit "port6"
+        set vdom "root"
+        set type physical
+        set snmp-index 6
+    next
+    edit "port7"
+        set vdom "root"
+        set type physical
+        set snmp-index 7
+    next
+    edit "port8"
+        set vdom "root"
+        set type physical
+        set snmp-index 8
+    next
+    edit "port9"
+        set vdom "root"
+        set type physical
+        set snmp-index 9
+    next
+    edit "port10"
+        set vdom "root"
+        set type physical
+        set snmp-index 10
+    next
+    edit "naf.root"
+        set vdom "root"
+        set type tunnel
+        set src-check disable
+        set snmp-index 11
+    next
+    edit "l2t.root"
+        set vdom "root"
+        set type tunnel
+        set snmp-index 12
+    next
+    edit "ssl.root"
+        set vdom "root"
+        set type tunnel
+        set alias "SSL VPN interface"
+        set snmp-index 13
+    next
+    edit "fortilink"
+        set vdom "root"
+        set fortilink enable
+        set ip 10.255.1.1 255.255.255.0
+        set allowaccess ping fabric
+        set type aggregate
+        set lldp-reception enable
+        set lldp-transmission enable
+        set snmp-index 14
+    next
+    edit "VLAN10"
+        set vdom "root"
+        set ip 20.25.224.1 255.255.255.128
+        set allowaccess ping
+        set device-identification enable
+        set role lan
+        set snmp-index 15
+        set interface "port2"
+        set vlanid 10
+    next
+    edit "VLAN20"
+        set vdom "root"
+        set ip 20.25.224.129 255.255.255.240
+        set allowaccess ping
+        set device-identification enable
+        set role lan
+        set snmp-index 16
+        set interface "port2"
+        set vlanid 20
+    next
+    edit "VLAN30"
+        set vdom "root"
+        set ip 20.25.224.145 255.255.255.240
+        set allowaccess ping
+        set device-identification enable
+        set role lan
+        set snmp-index 17
+        set interface "port2"
+        set vlanid 30
+    next
+end
+
+FortiGate-VM64-KVM # show system dhcp server
+config system dhcp server
+    edit 1
+        set ntp-service local
+        set default-gateway 20.25.224.1
+        set netmask 255.255.255.128
+        set interface "VLAN10"
+        config ip-range
+            edit 1
+                set start-ip 20.25.224.2
+                set end-ip 20.25.224.126
+            next
+        end
+        set dns-server1 8.8.8.8
+    next
+end
+
+FortiGate-VM64-KVM # show system dhcp server
+config system dhcp server
+    edit 1
+        set ntp-service local
+        set default-gateway 20.25.224.1
+        set netmask 255.255.255.128
+        set interface "VLAN10"
+        config ip-range
+            edit 1
+                set start-ip 20.25.224.2
+                set end-ip 20.25.224.126
+            next
+        end
+        set dns-server1 8.8.8.8
+    next
+end
+
+FortiGate-VM64-KVM #
+FortiGate-VM64-KVM # show router static
+config router static
+    edit 1
+        set gateway 192.168.42.1
+        set device "port1"
+    next
+end
+
+FortiGate-VM64-KVM # show firewall address
+config firewall address
+    edit "none"
+        set uuid e4fd71be-b7dd-51f1-665f-76ed7de4ed2b
+        set subnet 0.0.0.0 255.255.255.255
+    next
+    edit "login.microsoftonline.com"
+        set uuid e4fd792a-b7dd-51f1-8380-f4b6cc4f3489
+        set type fqdn
+        set fqdn "login.microsoftonline.com"
+    next
+    edit "login.microsoft.com"
+        set uuid e4fd8140-b7dd-51f1-5d87-779a40ae5c97
+        set type fqdn
+        set fqdn "login.microsoft.com"
+    next
+    edit "login.windows.net"
+        set uuid e4fd8456-b7dd-51f1-9821-414c29f99d71
+        set type fqdn
+        set fqdn "login.windows.net"
+    next
+    edit "gmail.com"
+        set uuid e4fd874e-b7dd-51f1-52c5-c9068aa11528
+        set type fqdn
+        set fqdn "gmail.com"
+    next
+    edit "wildcard.google.com"
+        set uuid e4fd8a00-b7dd-51f1-4540-2ac257107566
+        set type fqdn
+        set fqdn "*.google.com"
+    next
+    edit "wildcard.dropbox.com"
+        set uuid e4fd8cb2-b7dd-51f1-aec9-fd9855fdd875
+        set type fqdn
+        set fqdn "*.dropbox.com"
+    next
+    edit "all"
+        set uuid e5b052fc-b7dd-51f1-6787-1bc0c78780b5
+    next
+    edit "FIREWALL_AUTH_PORTAL_ADDRESS"
+        set uuid e5b055ea-b7dd-51f1-1a3a-8c03bda015dc
+    next
+    edit "FABRIC_DEVICE"
+        set uuid e5b058d8-b7dd-51f1-991d-7737a852e840
+        set comment "IPv4 addresses of Fabric Devices."
+    next
+    edit "SSLVPN_TUNNEL_ADDR1"
+        set uuid e5b1394c-b7dd-51f1-e2c3-c4282847c12c
+        set type iprange
+        set start-ip 10.212.134.200
+        set end-ip 10.212.134.210
+    next
+    edit "USERS"
+        set uuid 7f3cf0c2-b7e0-51f1-1bb8-b359040fb9c5
+        set subnet 20.25.224.0 255.255.255.128
+    next
+    edit "WEB-SERVER"
+        set uuid 7f410676-b7e0-51f1-2778-3540d73418b0
+        set subnet 20.25.224.130 255.255.255.255
+    next
+    edit "DB-SERVER"
+        set uuid 7f4441ba-b7e0-51f1-f915-9c4e7d7e0ba0
+        set subnet 20.25.224.146 255.255.255.255
+    next
+end
+
+FortiGate-VM64-KVM # show firewall policy
+config firewall policy
+    edit 1
+        set name "Users-to-Web"
+        set uuid b94c1aae-b7e0-51f1-b0ca-cebe1a417d9a
+        set srcintf "VLAN10"
+        set dstintf "VLAN20"
+        set action accept
+        set srcaddr "USERS"
+        set dstaddr "WEB-SERVER"
+        set schedule "always"
+        set service "HTTPS"
+        set utm-status enable
+        set ssl-ssh-profile "deep-inspection"
+        set file-filter-profile "Block-EXE-Downloads"
+        set ips-sensor "sql-injection-detecions"
+        set logtraffic all
+    next
+    edit 2
+        set name "Block-Users-DB"
+        set uuid c2da53ce-b7e0-51f1-e286-b07d363a8455
+        set srcintf "VLAN10"
+        set dstintf "VLAN30"
+        set srcaddr "USERS"
+        set dstaddr "DB-SERVER"
+        set schedule "always"
+        set service "MYSQL"
+        set logtraffic all
+    next
+    edit 3
+        set name "Web-to-DB"
+        set uuid cb32e63a-b7e0-51f1-ba81-d8ef8ffc83f9
+        set srcintf "VLAN20"
+        set dstintf "VLAN30"
+        set action accept
+        set srcaddr "WEB-SERVER"
+        set dstaddr "DB-SERVER"
+        set schedule "always"
+        set service "MYSQL"
+        set logtraffic all
+    next
+    edit 4
+        set name "Users-Internet"
+        set uuid d3506efa-b7e0-51f1-bcbc-4c0dd501fcd3
+        set srcintf "VLAN10"
+        set dstintf "port1"
+        set action accept
+        set srcaddr "USERS"
+        set dstaddr "all"
+        set schedule "always"
+        set service "ALL"
+        set logtraffic all
+        set nat enable
+    next
+    edit 5
+        set status disable
+        set name "TEMP-Servers-Internet"
+        set uuid dbc29af4-b7e0-51f1-ace8-f5be8dab940a
+        set srcintf "VLAN20" "VLAN30"
+        set dstintf "port1"
+        set action accept
+        set srcaddr "all"
+        set dstaddr "all"
+        set schedule "always"
+        set service "ALL"
+        set logtraffic all
+        set nat enable
+    next
+    edit 6
+        set name "sqli-test"
+        set uuid 400c0562-b90e-51f1-55df-ea9f409c7332
+        set srcintf "VLAN10"
+        set dstintf "VLAN20"
+        set action accept
+        set srcaddr "USERS"
+        set dstaddr "WEB-SERVER"
+        set schedule "always"
+        set service "HTTP"
+        set utm-status enable
+        set ssl-ssh-profile "certificate-inspection"
+        set ips-sensor "sql-injection-detecions"
+        set logtraffic all
+    next
+end
+FortiGate-VM64-KVM # show firewall ssl-ssh-profile deep-inspection
+config firewall ssl-ssh-profile
+    edit "deep-inspection"
+        set comment "Read-only deep inspection profile."
+        config https
+            set ports 443
+            set status deep-inspection
+        end
+        config ftps
+            set ports 990
+            set status deep-inspection
+        end
+        config imaps
+            set ports 993
+            set status deep-inspection
+        end
+        config pop3s
+            set ports 995
+            set status deep-inspection
+        end
+        config smtps
+            set ports 465
+            set status deep-inspection
+        end
+        config ssh
+            set ports 22
+            set status disable
+        end
+        config dot
+            set status disable
+        end
+        config ssl-exempt
+            edit 1
+                set fortiguard-category 31
+            next
+            edit 2
+                set fortiguard-category 33
+            next
+            edit 3
+                set type wildcard-fqdn
+                set wildcard-fqdn "adobe"
+            next
+            edit 4
+                set type wildcard-fqdn
+                set wildcard-fqdn "Adobe Login"
+            next
+            edit 5
+                set type wildcard-fqdn
+                set wildcard-fqdn "android"
+            next
+            edit 6
+                set type wildcard-fqdn
+                set wildcard-fqdn "apple"
+            next
+            edit 7
+                set type wildcard-fqdn
+                set wildcard-fqdn "appstore"
+            next
+            edit 8
+                set type wildcard-fqdn
+                set wildcard-fqdn "auth.gfx.ms"
+            next
+            edit 9
+                set type wildcard-fqdn
+                set wildcard-fqdn "citrix"
+            next
+            edit 10
+                set type wildcard-fqdn
+                set wildcard-fqdn "dropbox.com"
+            next
+            edit 11
+                set type wildcard-fqdn
+                set wildcard-fqdn "eease"
+            next
+            edit 12
+                set type wildcard-fqdn
+                set wildcard-fqdn "firefox update server"
+            next
+            edit 13
+                set type wildcard-fqdn
+                set wildcard-fqdn "fortinet"
+            next
+            edit 14
+                set type wildcard-fqdn
+                set wildcard-fqdn "googleapis.com"
+            next
+            edit 15
+                set type wildcard-fqdn
+                set wildcard-fqdn "google-drive"
+            next
+            edit 16
+                set type wildcard-fqdn
+                set wildcard-fqdn "google-play2"
+            next
+            edit 17
+                set type wildcard-fqdn
+                set wildcard-fqdn "google-play3"
+            next
+            edit 18
+                set type wildcard-fqdn
+                set wildcard-fqdn "Gotomeeting"
+            next
+            edit 19
+                set type wildcard-fqdn
+                set wildcard-fqdn "icloud"
+            next
+            edit 20
+                set type wildcard-fqdn
+                set wildcard-fqdn "itunes"
+            next
+            edit 21
+                set type wildcard-fqdn
+                set wildcard-fqdn "microsoft"
+            next
+            edit 22
+                set type wildcard-fqdn
+                set wildcard-fqdn "skype"
+            next
+            edit 23
+                set type wildcard-fqdn
+                set wildcard-fqdn "softwareupdate.vmware.com"
+            next
+            edit 24
+                set type wildcard-fqdn
+                set wildcard-fqdn "verisign"
+            next
+            edit 25
+                set type wildcard-fqdn
+                set wildcard-fqdn "Windows update 2"
+            next
+            edit 26
+                set type wildcard-fqdn
+                set wildcard-fqdn "live.com"
+            next
+            edit 27
+                set type wildcard-fqdn
+                set wildcard-fqdn "google-play"
+            next
+            edit 28
+                set type wildcard-fqdn
+                set wildcard-fqdn "update.microsoft.com"
+            next
+            edit 29
+                set type wildcard-fqdn
+                set wildcard-fqdn "swscan.apple.com"
+            next
+            edit 30
+                set type wildcard-fqdn
+                set wildcard-fqdn "autoupdate.opera.com"
+            next
+            edit 31
+                set type wildcard-fqdn
+                set wildcard-fqdn "cdn-apple"
+            next
+            edit 32
+                set type wildcard-fqdn
+                set wildcard-fqdn "mzstatic-apple"
+            next
+        end
+    next
+end
+
+FortiGate-VM64-KVM # show firewall DoS-policy
+config firewall DoS-policy
+    edit 1
+        set name "Anti-DoS-Users"
+        set interface "VLAN10"
+        set srcaddr "USERS"
+        set dstaddr "WEB-SERVER"
+        set service "ALL"
+        config anomaly
+            edit "tcp_syn_flood"
+                set status enable
+                set log enable
+                set action block
+                set threshold 100
+            next
+            edit "tcp_port_scan"
+                set threshold 1000
+            next
+            edit "tcp_src_session"
+                set threshold 5000
+            next
+            edit "tcp_dst_session"
+                set threshold 5000
+            next
+            edit "udp_flood"
+                set status enable
+                set log enable
+                set action block
+                set threshold 2000
+            next
+            edit "udp_scan"
+                set threshold 2000
+            next
+            edit "udp_src_session"
+                set threshold 5000
+            next
+            edit "udp_dst_session"
+                set threshold 5000
+            next
+            edit "icmp_flood"
+                set status enable
+                set log enable
+                set action block
+                set threshold 250
+            next
+            edit "icmp_sweep"
+                set threshold 100
+            next
+            edit "icmp_src_session"
+                set threshold 300
+            next
+            edit "icmp_dst_session"
+                set threshold 1000
+            next
+            edit "ip_src_session"
+                set status enable
+                set log enable
+                set action block
+                set threshold 5000
+            next
+            edit "ip_dst_session"
+                set status enable
+                set log enable
+                set action block
+                set threshold 5000
+            next
+            edit "sctp_flood"
+                set threshold 2000
+            next
+            edit "sctp_scan"
+                set threshold 1000
+            next
+            edit "sctp_src_session"
+                set threshold 5000
+            next
+            edit "sctp_dst_session"
+                set threshold 5000
+            next
+        end
+    next
+end
+
